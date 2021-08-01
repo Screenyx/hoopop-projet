@@ -1,14 +1,26 @@
 <template>
   <div id="app">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark">    
+      <div>
+        <div class="dropdown open">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panier(0)</button>
+          <div>
+              <mini-cart/>
+          </div>
+          
+        </div>     
+      </div>
+    </nav>
+
     <img alt="Vue logo" src="./assets/logo.png">
     <h1>Liste des produits</h1>
-    <button type="button">Valider le panier</button>
     <br>
     <li class="liste" v-for="product in products" :key="product.productId">
       <img class="pic" :src="product.productPicture">
       {{product.productName}}
-      
-      <button>+</button>
+      | Prix : {{product.productPrice}} €
+      <button class="btn btn-primary">+</button>
     </li>
     
   </div>
@@ -16,13 +28,13 @@
 
 <script>
 
-import productsData from './products.json'
+import productsData from './products.json';
+import MiniCart from "./components/MiniCart.vue";
+
 
 export default {
   name: 'App',
-  components: {
-    
-  },
+  components: { MiniCart },
   data() {
     return {
       products: productsData,
